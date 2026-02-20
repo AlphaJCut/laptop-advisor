@@ -1,100 +1,64 @@
-# 💻 Smart Laptop Advisor
+# Smart Laptop Advisor
 
-An AI-powered laptop price prediction and recommendation system built with Python, Machine Learning, and Streamlit.
+Dự đoán giá laptop và gợi ý laptop phù hợp bằng Machine Learning với Scikit-learn và Streamlit.
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![ML](https://img.shields.io/badge/ML-Scikit--learn-orange.svg)
-![XGBoost](https://img.shields.io/badge/XGBoost-Latest-green.svg)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red.svg)
+## Kết quả
 
-## 🎯 Project Overview
+- **Best Model:** Random Forest
+- **Test R2 Score:** 0.83
+- **Test RMSE:** ~8,500 INR
+- **Features:** 21 đặc trưng
+- **Dataset:** 893 laptops (Indian Market)
 
-Smart Laptop Advisor is an end-to-end machine learning project that helps users:
-1. **Predict laptop prices** based on specifications
-2. **Get personalized recommendations** based on use case and budget
-3. **Analyze market trends** with interactive visualizations
-4. **Find best deals** with value analysis
+## Dataset
 
-## 🚀 Features
+Project sử dụng dataset từ Kaggle:
 
-### 1. Price Prediction
-- 3 ML models compared (Linear Regression, Random Forest, Gradient Boosting)
-- Best model: **Gradient Boosting** with R² = 0.92
-- Feature engineering with 21 features
-- Real-time predictions via web interface
+| Dataset | Số bản ghi | Nguồn |
+|---------|------------|-------|
+| Laptop Price Estimation | 893 | [Kaggle](https://www.kaggle.com/datasets/alhamdulliah123/laptop-price-estimation-using-feature-scaling) |
 
-### 2. Recommendation System
-- Content-based filtering
-- 6 use case profiles: Gaming, Office, Creative, Student, Ultraportable, All-Rounder
-- Budget filtering
-- Match scoring algorithm
+**Các cột chính trong dataset:**
+- Company, Product, Cpu, Ram, Gpu, OpSys, Inches, Price
+- Cpu_brand, Gpu_brand, HDD, SSD
 
-### 3. Market Analysis
-- Price distribution by brand/type
-- Feature correlation analysis
-- Interactive Plotly visualizations
+## Cài đặt
 
+### 1. Clone repository
 
-## 📁 Project Structure
-
-```
-smart-laptop-advisor/
-├── data/
-│   ├── download_data.py       # Script tải dataset từ Kaggle
-│   ├── processed/             # Data sau khi xử lý (auto-generated)
-│   └── .gitkeep
-├── models/
-│   ├── price_model.pkl        # Trained model (auto-generated)
-│   ├── recommender.pkl        # Recommendation system (auto-generated)
-│   └── .gitkeep
-├── src/
-│   ├── data_preprocessing.py  # Data cleaning & feature engineering
-│   ├── price_model.py         # Price prediction models
-│   ├── recommender.py         # Recommendation system
-│   └── utils.py               # Utility functions
-├── notebooks/
-│   └── laptop_EDA.ipynb          # Exploratory Data Analysis
-├── app.py                     # Streamlit web application
-├── requirements.txt           # Dependencies
-└── README.md                  # Documentation
-```
-
-## 🛠️ Installation
-
-### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/smart-laptop-advisor.git
+git clone https://github.com/YOUR_USERNAME/smart-laptop-advisor.git
 cd smart-laptop-advisor
 ```
 
-### 2. Create virtual environment (optional but recommended)
+### 2. Tạo virtual environment (Python 3.8+)
+
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# or
-venv\Scripts\activate     # Windows
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # Linux/Mac
 ```
 
-### 3. Install dependencies
+### 3. Cài đặt thư viện
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Setup Kaggle API & Download Dataset
+### 4. Setup Kaggle API và tải dataset
+
 ```bash
 # Bước 1: Tạo Kaggle API Key
 # - Đăng nhập https://www.kaggle.com
-# - Vào Settings → API → Click "Create Legacy API Key"
+# - Vào Settings -> API -> Click "Create New API Token"
 # - File kaggle.json sẽ tự động tải về
 
-# Bước 2: Di chuyển kaggle.json vào đúng vị trí
+# Bước 2: Di chuyển kaggle.json
+# Windows: Copy vào C:\Users\<Username>\.kaggle\
 # Linux/Mac:
 mkdir -p ~/.kaggle
 mv ~/Downloads/kaggle.json ~/.kaggle/
 chmod 600 ~/.kaggle/kaggle.json
-
-# Windows:
-# Copy kaggle.json vào C:\Users\<YourUsername>\.kaggle\
 
 # Bước 3: Tải dataset
 cd data
@@ -102,99 +66,124 @@ python download_data.py
 cd ..
 ```
 
-### 5. Run the preprocessing and training
+### 5. Tiền xử lý dữ liệu và huấn luyện model
+
 ```bash
-# Preprocess data
 python src/data_preprocessing.py
-
-# Train models
 python src/price_model.py
-
-# Build recommender
 python src/recommender.py
 ```
 
-### 6. Run the Streamlit app
+### 6. Chạy ứng dụng web
+
 ```bash
 streamlit run app.py
 ```
 
-## 📊 Model Performance
+## Sử dụng
 
-| Model | Test RMSE | Test R² | CV RMSE |
-|-------|-----------|---------|---------|
-| Linear Regression | $2,146.30 | 0.70 | $2,778.66 |
-| Random Forest | $1,254.22 | 0.90 | $1,747.42 |
-| **Gradient Boosting** | **$1,088.20** | **0.92** | **$1,453.60** |
+### Dự đoán giá laptop
 
-## 🔑 Key Features Used
+Chọn cấu hình laptop (Brand, CPU, GPU, RAM, Storage, Screen Size) và nhấn "Predict Price".
 
-Top 10 most important features for price prediction:
-1. Performance Score
-2. RAM (GB)
-3. Storage (GB)
-4. Brand
-5. Weight (kg)
-6. PPI (Pixels Per Inch)
-7. GPU
-8. Processor
-9. Laptop Type
-10. Operating System
+### Gợi ý laptop
 
-## 🎨 Tech Stack
+Chọn mục đích sử dụng (Gaming, Office, Creative, Student, Programming, Portable) và ngân sách để nhận gợi ý phù hợp.
 
-- **Python 3.8+**
-- **Machine Learning**: Scikit-learn (Linear Regression, Random Forest, Gradient Boosting)
-- **Data Processing**: Pandas, NumPy
-- **Web Application**: Streamlit
-- **Visualization**: Plotly, Matplotlib, Seaborn
+### Phân tích thị trường
 
-## 🚀 Deployment Options
+Xem biểu đồ phân tích giá theo thương hiệu, RAM, hiệu năng và ma trận tương quan.
 
-### Option 1: Streamlit Cloud (Recommended - Free)
-1. Push code to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your repository
-4. Deploy!
+## Cấu trúc thư mục
 
-### Option 2: Hugging Face Spaces (Free)
-1. Create a new Space on Hugging Face
-2. Select Streamlit as SDK
-3. Upload your files
-4. Done!
+```
+smart-laptop-advisor/
+├── data/
+│   ├── download_data.py          # Script tải dataset từ Kaggle
+│   ├── laptop_prices.csv         # Dataset gốc (sau khi tải)
+│   └── processed/
+│       ├── processed_data.csv    # Dữ liệu đã xử lý
+│       ├── preprocessor.pkl      # Preprocessor đã train
+│       ├── X_train.npy           # Training features
+│       ├── X_test.npy            # Test features
+│       ├── y_train.npy           # Training labels
+│       └── y_test.npy            # Test labels
+├── models/
+│   ├── price_model.pkl           # Model dự đoán giá
+│   ├── recommender.pkl           # Hệ thống gợi ý
+│   ├── feature_importance.csv    # Độ quan trọng đặc trưng
+│   └── model_comparison.csv      # So sánh các model
+├── notebooks/
+│   └── laptop_EDA.ipynb          # Notebook phân tích dữ liệu
+├── src/
+│   ├── __init__.py               # Module init
+│   ├── data_preprocessing.py     # Tiền xử lý dữ liệu
+│   ├── price_model.py            # Huấn luyện model giá
+│   ├── recommender.py            # Hệ thống gợi ý
+│   └── utils.py                  # Hàm tiện ích
+├── app.py                        # Ứng dụng Streamlit
+├── requirements.txt              # Thư viện cần thiết
+├── .gitignore                    # Git ignore
+└── README.md                     # Tài liệu
+```
 
-### Option 3: Render/Railway (Free tier available)
-1. Connect your GitHub repo
-2. Set build command: `pip install -r requirements.txt`
-3. Set start command: `streamlit run app.py`
+## Công nghệ
 
-## 📈 Future Improvements
+- Python 3.8+
+- Scikit-learn (Linear Regression, Random Forest, Gradient Boosting)
+- Pandas, NumPy
+- Streamlit
+- Plotly, Matplotlib, Seaborn
+- Kaggle API
 
-- [ ] Add more ML models (Neural Networks, CatBoost)
-- [ ] Implement collaborative filtering
-- [ ] Add real-time price scraping
-- [ ] Build REST API with FastAPI
-- [ ] Add user authentication
-- [ ] Deploy with Docker
+## Model Architecture
 
-## 👨‍💻 Skills Demonstrated
+```
+3 Models được so sánh:
 
-This project demonstrates proficiency in:
-- ✅ **Data Preprocessing** - Cleaning, feature engineering
-- ✅ **Machine Learning** - Regression, model comparison, hyperparameter tuning
-- ✅ **Recommendation Systems** - Content-based filtering, clustering
-- ✅ **Web Development** - Streamlit interactive apps
-- ✅ **Data Visualization** - Plotly charts, EDA
-- ✅ **Software Engineering** - Modular code, OOP, documentation
+1. Linear Regression
+   - Baseline model
+   - R2 ~ 0.70
 
-## 📄 License
+2. Random Forest (Best)
+   - n_estimators: 100
+   - max_depth: 15
+   - R2 ~ 0.83
 
-MIT License - feel free to use this project for your portfolio!
+3. Gradient Boosting
+   - n_estimators: 100
+   - learning_rate: 0.1
+   - R2 ~ 0.80
+```
 
-## 🤝 Contributing
+## Feature Engineering
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+```
+Các đặc trưng được tạo:
+- processor_score: Điểm CPU (1-10)
+- gpu_score: Điểm GPU (1-10)
+- performance_score: Điểm hiệu năng tổng hợp
+- portability_score: Điểm di động
+- value_score: Điểm giá trị
+- is_gaming: Laptop gaming hay không
+- is_ultraportable: Laptop siêu mỏng nhẹ
+- storage_gb: Tổng dung lượng (SSD + HDD)
+```
 
----
+## Tính năng chính
 
-**Built with ❤️ for AI/ML Portfolio**
+| Tab | Chức năng |
+|-----|-----------|
+| Price Prediction | Dự đoán giá dựa trên cấu hình |
+| Smart Recommendations | Gợi ý laptop theo nhu cầu và ngân sách |
+| Market Analysis | Phân tích thị trường với biểu đồ |
+
+## Hỗ trợ tiền tệ
+
+- **VND:** Việt Nam Đồng (mặc định)
+- **INR:** Indian Rupee
+- Tỷ giá: 1 INR = 287 VND (có thể tùy chỉnh)
+
+## License
+
+MIT License

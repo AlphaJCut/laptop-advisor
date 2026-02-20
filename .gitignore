@@ -49,7 +49,7 @@ coverage.xml
 *.pot
 
 # Jupyter Notebook
-.ipynb_checkpoints
+.ipynb_checkpoints/
 
 # pyenv
 .python-version
@@ -68,26 +68,46 @@ venv.bak/
 .vscode/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Project specific - auto-generated files
-data/processed/*.npy
-data/processed/*.pkl
-data/processed/*.csv
-models/*.pkl
-models/*.csv
-!data/processed/.gitkeep
-!models/.gitkeep
-
-# Kaggle API credentials (QUAN TRỌNG - không upload lên GitHub!)
+# Kaggle API credentials (QUAN TRONG - khong upload len GitHub!)
 kaggle.json
 .kaggle/
 
-# Dataset (tải từ Kaggle, không upload lên GitHub)
-data/*.csv
+# Dataset goc (tai tu Kaggle, khong upload)
+data/laptop_prices.csv
+data/*.zip
+
+# Processed data (tu dong tao khi chay preprocessing)
+data/processed/*.npy
+data/processed/*.pkl
+data/processed/*.csv
+
+# Models (tu dong tao khi chay training)
+models/*.pkl
+models/*.csv
+models/*.h5
+models/*.joblib
+
+# Giu lai file .gitkeep
+!data/processed/.gitkeep
+!models/.gitkeep
 
 # Logs
 *.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Streamlit
+.streamlit/secrets.toml

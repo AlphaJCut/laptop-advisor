@@ -22,6 +22,22 @@ Project sử dụng dataset từ Kaggle:
 - Company, Product, Cpu, Ram, Gpu, OpSys, Inches, Price
 - Cpu_brand, Gpu_brand, HDD, SSD
 
+## Phân tích dữ liệu (EDA)
+
+Chi tiết về notebook phân tích dữ liệu được mô tả trong file:
+- [EDA_Documentation.docx](docs/EDA_Documentation.docx) - Tài liệu mô tả chi tiết các biểu đồ và kết quả phân tích
+
+Notebook `notebooks/laptop_EDA.ipynb` chứa toàn bộ quy trình:
+1. Import Libraries
+2. Load Dataset  
+3. Exploratory Data Analysis
+4. Data Preprocessing
+5. Feature Engineering
+6. Model Training
+7. Model Evaluation
+8. Feature Importance
+9. Conclusion
+
 ## Cài đặt
 
 ### 1. Clone repository
@@ -82,15 +98,24 @@ streamlit run app.py
 
 ## Sử dụng
 
-### Dự đoán giá laptop
+### Tab 1: Dự đoán giá laptop
 
 Chọn cấu hình laptop (Brand, CPU, GPU, RAM, Storage, Screen Size) và nhấn "Predict Price".
 
-### Gợi ý laptop
+### Tab 2: Gợi ý laptop
 
-Chọn mục đích sử dụng (Gaming, Office, Creative, Student, Programming, Portable) và ngân sách để nhận gợi ý phù hợp.
+| Tùy chọn | Mô tả |
+|----------|-------|
+| Use Case | Chọn mục đích sử dụng (Gaming, Office, Creative, Student, Programming, Portable) |
+| Maximum Budget | Ngân sách tối đa (VND hoặc INR) |
+| Number of recommendations | Số lượng laptop muốn hiển thị (3-10). Ví dụ: chọn 5 sẽ hiển thị top 5 laptop phù hợp nhất |
 
-### Phân tích thị trường
+Hệ thống sẽ tính điểm phù hợp (Match Score) cho từng laptop dựa trên:
+- Yêu cầu tối thiểu của use case (RAM, GPU score, CPU score)
+- Trọng số các đặc trưng phù hợp với mục đích sử dụng
+- Lọc theo ngân sách
+
+### Tab 3: Phân tích thị trường
 
 Xem biểu đồ phân tích giá theo thương hiệu, RAM, hiệu năng và ma trận tương quan.
 
@@ -108,6 +133,8 @@ smart-laptop-advisor/
 │       ├── X_test.npy            # Test features
 │       ├── y_train.npy           # Training labels
 │       └── y_test.npy            # Test labels
+├── docs/
+│   └── EDA_Documentation.docx    # Tài liệu mô tả EDA
 ├── models/
 │   ├── price_model.pkl           # Model dự đoán giá
 │   ├── recommender.pkl           # Hệ thống gợi ý

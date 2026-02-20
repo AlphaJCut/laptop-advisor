@@ -1,7 +1,3 @@
-"""
-Laptop Advisor - A laptop price prediction and recommendation system with currency conversion.
-"""
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -26,7 +22,7 @@ st.set_page_config(
 
 # ===================== SESSION STATE FOR CURRENCY =====================
 if "inr_to_vnd_rate" not in st.session_state:
-    st.session_state.inr_to_vnd_rate = 287  
+    st.session_state.inr_to_vnd_rate = 287
 
 
 # ===================== CURRENCY FUNCTIONS =====================
@@ -668,7 +664,7 @@ def main():
                 )
 
             with col2:
-                st.subheader("Budget")
+                st.subheader("Budget & Results")
 
                 if currency == "VND":
                     budget = st.slider(
@@ -696,7 +692,10 @@ def main():
                     )
 
                 top_n = st.slider(
-                    "Number of recommendations:", min_value=3, max_value=10, value=5
+                    "Number of results to show:",
+                    min_value=3,
+                    max_value=10,
+                    value=5,
                 )
 
             # Get recommendations button
@@ -715,7 +714,9 @@ def main():
                         Suggestion: Try increasing your budget or selecting a different use case.
                         """)
                     else:
-                        st.success(f"Found {len(recommendations)} matching laptops!")
+                        st.success(
+                            f"Found {len(recommendations)} matching laptops (showing top {top_n})!"
+                        )
 
                         # Find column names
                         price_col = (
@@ -953,15 +954,6 @@ def main():
 
     # Footer
     st.divider()
-    st.markdown(
-        f"""
-    <div style='text-align: center; color: #666; padding: 1rem;'>
-        <p><strong>Smart Laptop Advisor</strong> - Built with Streamlit and Scikit-learn</p>
-        <p>AI/ML Fresher Project | Exchange Rate: 1 INR = {st.session_state.inr_to_vnd_rate} VND</p>
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
 
 
 if __name__ == "__main__":

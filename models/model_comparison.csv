@@ -1,0 +1,4 @@
+,train_rmse,test_rmse,train_mae,test_mae,train_r2,test_r2,cv_rmse_mean,cv_rmse_std
+Linear Regression,32537.25,30981.92,21477.88,22292.25,0.72,0.72,33467.59,2589.7
+Random Forest,14493.54,24458.46,7512.24,14178.0,0.94,0.83,30000.9,3333.39
+Gradient Boosting,6313.4,24676.94,4479.95,13188.06,0.99,0.82,29453.85,3728.73

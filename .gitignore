@@ -76,28 +76,13 @@ venv.bak/
 Thumbs.db
 desktop.ini
 
-# Kaggle API credentials (QUAN TRONG - khong upload len GitHub!)
+# Kaggle API credentials
 kaggle.json
 .kaggle/
 
-# Dataset goc (tai tu Kaggle, khong upload)
+# Dataset goc 
 data/laptop_prices.csv
 data/*.zip
-
-# Processed data (tu dong tao khi chay preprocessing)
-data/processed/*.npy
-data/processed/*.pkl
-data/processed/*.csv
-
-# Models (tu dong tao khi chay training)
-models/*.pkl
-models/*.csv
-models/*.h5
-models/*.joblib
-
-# Giu lai file .gitkeep
-!data/processed/.gitkeep
-!models/.gitkeep
 
 # Logs
 *.log
